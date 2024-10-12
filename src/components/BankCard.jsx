@@ -55,7 +55,7 @@ const BankCard = () => {
             </p>
             <button
               onClick={handleFlip}
-              className="mt-6 p-2 bg-blue-500 text-white rounded"
+              className="mt-6 p-2 bg-green-500 text-white rounded"
             >
               Back to Banks
             </button>

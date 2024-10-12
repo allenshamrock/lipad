@@ -2,8 +2,8 @@ import React from "react";
 import Navbar from "./Navbar";
 import BankCard from "./BankCard";
 import Card from "./Card";
-
-
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 const LandingPage = () => {
   const profileCards = [
@@ -27,6 +27,20 @@ const LandingPage = () => {
       header: "Simplify payments",
       text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
     },
+  ];
+
+  const patners = [
+    {
+      image: "/KCB.jpeg",
+    },
+    { image: "/Absa.png" },
+    {
+      image: "/coop.jpeg",
+    },
+    {
+      image: "/I&M.png",
+    },
+    { image: "/stanbic.jpeg" },
   ];
 
   return (
@@ -78,7 +92,7 @@ const LandingPage = () => {
           </div>
           <div className="flex justify-center">
             <video
-              src="video.mp4" 
+              src="video.mp4"
               controls
               className="w-[400px] h-auto rounded-[12px]"
             >
@@ -86,8 +100,80 @@ const LandingPage = () => {
             </video>
           </div>
         </div>
-        <div className="flex flex-col h-30">
 
+        <div className="mt-[100px] flex flex-col items-center h-30 gap-5 w-full">
+          <h3 className="text-3xl font-semibold capitalize flex items-center text-gray-800">
+            Our Partner Banks
+          </h3>
+          <Splide
+            options={{
+              type: "loop",
+              perPage: 3,
+              autoplay: true,
+              interval: 3000,
+              pauseOnHover: false,
+              resetProgress: false,
+              arrows: false,
+              pagination: false,
+              speed: 800,
+              gap: "1rem",
+              direction: "ltr",
+            }}
+            className="w-full"
+          >
+            {patners.map((patner, index) => (
+              <SplideSlide key={index}>
+                <div
+                  className={`flex items-center justify-center rounded-full ${
+                    index === Math.floor(patners.length / 2)
+                      ? "bg-gray-800 p-3"
+                      : ""
+                  }`}
+                  style={{ width: "100px", height: "100px" }}
+                >
+                  <img
+                    className="rounded-full w-full h-full object-cover"
+                    src={patner.image}
+                    alt={`Partner ${index}`}
+                  />
+                </div>
+              </SplideSlide>
+            ))}
+          </Splide>
+        </div>
+        <div className="flex mt-[100px] justify-between">
+          <div className="flex flex-col gap-3 w-1/2">
+            <button className="w-[200px] text-nowrap rounded-2xl p-2 text-gray-800 text-sm font-semibold border-4 border-gray-300 bg-gray-200">
+              why you should use LIPAD
+            </button>
+            <h3 className="text-4xl font-semibold   text-gray-800">
+              One platform for all your business <br /> needs
+            </h3>
+
+            <p className=" text-gray-800 text-xl tracking widest">
+              Simplify your business with a all-in-one <br /> platform
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 w-1/2">
+            <div className="space-y-7 flex flex-col justify-start">
+              <p className=" text-gray-800 text-xl tracking widest">
+                Instant activating to start transacting
+              </p>
+              <div className="h-[0.01rem]  bg-slate-300"></div>
+              <p className=" text-gray-800 text-xl tracking widest">
+                Simple Pricing
+              </p>
+              <div className="h-[0.01rem]  bg-slate-300"></div>
+              <p className=" text-gray-800 text-xl tracking widest">
+               Built for all merchants
+              </p>
+              <div className="h-[0.01rem]  bg-slate-300"></div>
+              <p className=" text-gray-800 text-xl tracking widest">
+              Dashboard Reporting
+              </p>
+              <div className="h-[0.01rem]   bg-slate-300"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
